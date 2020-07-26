@@ -6,12 +6,12 @@
 ## Utilities
 Αξιοποιώντας διαθέσιμα δεδομένα της ιστοσελίδας https://www.semanticscholar.org/cord19, η διαδικτυακή εφαρμογή Eir παρουσιάζει το σύνολο των ασθενών που συμμετέχουν σε κλινικές δοκιμές (enrollment – type: actual), οι οποίες αφορούν μια συγκεκριμένη ασθένεια (π.χ. Sjogren’s Syndrome). Παράλληλα, πραγματοποιείται υπολογισμός και παρουσίαση του μέσου χρόνου που χρειάστηκε για την εύρεση των ασθενών (aka στρατολόγηση), λαμβάνοντας υπόψη το πότε ξεκίνησε η κλινική μελέτη και πότε έγινε τελευταία φορά update. (Η προαναφερθείσα λειτουργία βασίζεται σε θέμα, που προτάθηκε από τους υπεύθυνους και διδάσκοντες του μαθήματος και συγκεκριμένα πρόκειται για αυτό με τη κωδική ονομασία CTGOV-01.)
 
-## Technologies & Datasets
+## Technologies & Datasets**
 
-* Data available [here](https://www.semanticscholar.org/cord19)
-* [MongoDB](https://www.mongodb.com/)
-* [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
-* [Maven Build Tool](https://maven.apache.org/)
-* [Spring Boot Framework](https://spring.io/projects/spring-boot)
-* [Restlet Framework](https://restlet.talend.com/)
-* HTML 5/CSS 3 with [Angular Framework](https://angular.io/)
+* Τα δεδομένα που αξιοποιήθηκαν [εδώ](https://www.semanticscholar.org/cord19).
+* [MongoDB](https://www.mongodb.com/) ως σύστημα διαχείρισης της Βάσης Δεδομένων (DBMS).
+* [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html), [Spring Boot Framework](https://spring.io/projects/spring-boot), [Restlet Framework](https://restlet.talend.com/) για τον back-end εξυπηρετητή.
+* HTML 5/CSS 3 with [Angular Framework](https://angular.io/) για τον front-end εξυπηρετητή.
+* [Maven Build Tool](https://maven.apache.org/).
+
+** Τυχόν μεταβολές σε εργαλεία, frameworks και γλώσσες προγραμματισμού που απαιτηθούν για την υλοποίηση του εγχειρήματος θα καταγραφούν στο συγκεκριμένο αρχείο.
