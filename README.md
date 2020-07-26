@@ -11,7 +11,7 @@
 * Τα δεδομένα που αξιοποιήθηκαν [εδώ](https://www.semanticscholar.org/cord19).
 * [MongoDB](https://www.mongodb.com/) ως σύστημα διαχείρισης της Βάσης Δεδομένων (DBMS).
 * [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html), [Spring Boot Framework](https://spring.io/projects/spring-boot), [Restlet Framework](https://restlet.talend.com/) για τον back-end εξυπηρετητή.
-* HTML 5/CSS 3 with [Angular Framework](https://angular.io/) για τον front-end εξυπηρετητή.
+* HTML 5/CSS 3 with [Angular Framework](https://angular.io/) & [Typescript](https://www.typescriptlang.org/) για τον front-end εξυπηρετητή.
 * [Maven Build Tool](https://maven.apache.org/).
 
 ** Τυχόν μεταβολές σε εργαλεία, frameworks και γλώσσες προγραμματισμού που απαιτηθούν για την υλοποίηση του εγχειρήματος θα καταγραφούν στο συγκεκριμένο αρχείο.
