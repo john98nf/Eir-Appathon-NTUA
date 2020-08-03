@@ -45,21 +45,18 @@ do
     CURRENT_OUTPUT_FOLDER="${OUTPUT_FOLDER}/NCT${Num}xxxx"
     mkdir -p "${CURRENT_OUTPUT_FOLDER}"
 
+    cd "${CURRENT_INPUT_FOLDER}"
     # Loop through all files inside current folder
-    file_array=( `ls ${CURRENT_INPUT_FOLDER}` )
+    file_array=( `ls` )
     length=${#file_array[@]}
     for (( i=0; i<$length; i++ ))
     do
         echo "File ${file_array[$i]} is processed"
-        # Set dot "." as delimiter
-        IFS='.'
-        #Read the split words into an array based on dot delimiter
-        read -a temporary <<< "${file_array[$i]}"
-        output_file="${temporary[0]}.json"
+        # Remove ".xml" and concatinate .json in file name
+        output_file="${file_array[$i]%.xml}.json"
 
         # Main job
         python3 -m xmljson -d parker -o "${CURRENT_OUTPUT_FOLDER}/${output_file}" "${CURRENT_INPUT_FOLDER}/${file_array[$i]}"
-
     done
 
 done
