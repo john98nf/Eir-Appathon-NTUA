@@ -19,8 +19,9 @@ then
 fi
 
 # Configure paths
-OUTPUT_FOLDER="${PROJECT_FOLDER}/Dumps/json"
-INPUT_FOLDER="${PROJECT_FOLDER}/Dumps/xml"
+INPUT_FOLDER="${PROJECT_FOLDER}/Dumps/json"
+
+cd "${INPUT_FOLDER}"
 
 for i in {0..449}
 do
@@ -37,26 +38,22 @@ do
     then
         Num="${i}"
     else
-        echo "Something's wrong with Dataset folders!"
+        echo "Something's wrong with dataset folders!"
         exit -1
     fi
 
     CURRENT_INPUT_FOLDER="${INPUT_FOLDER}/NCT${Num}xxxx"
-    CURRENT_OUTPUT_FOLDER="${OUTPUT_FOLDER}/NCT${Num}xxxx"
-    mkdir -p "${CURRENT_OUTPUT_FOLDER}"
 
     cd "${CURRENT_INPUT_FOLDER}"
     # Loop through all files inside current folder
     file_array=( `ls` )
     length=${#file_array[@]}
+    # Import each file into db
     for (( i=0; i<$length; i++ ))
     do
         echo "File ${file_array[$i]} is processed"
-        # Remove ".xml" and concatinate .json in file name
-        output_file="${file_array[$i]%.xml}.json"
-
-        # Main job
-        python3 -m xmljson -d parker -o "${CURRENT_OUTPUT_FOLDER}/${output_file}" "${CURRENT_INPUT_FOLDER}/${file_array[$i]}"
+        
+        mongoimport --db eir --collection clinicalStudies --file ${file_array[$i]}        
     done
 
 done
