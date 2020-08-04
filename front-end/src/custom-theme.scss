@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+// Define a dark theme.
+$dark-primary: mat-palette($mat-pink);
+$dark-accent:  mat-palette($mat-pink,800);
+$dark-warn:    mat-palette($mat-teal);
+
+$dark-theme:   mat-dark-theme(
+    $dark-primary,
+    $dark-accent,
+    $dark-warn
+);
+
+@include angular-material-theme($dark-theme);
