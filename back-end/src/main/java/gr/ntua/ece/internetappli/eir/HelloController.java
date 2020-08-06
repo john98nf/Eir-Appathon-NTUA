@@ -12,21 +12,21 @@ import java.io.*;
 public class HelloController {
 
 	@Autowired
-	ClinicalStudyRepository clinicalStudyRepository;
+	MyMongoCollectionRepository myMongoCollectionRepository;
 
 	@RequestMapping("/")
 	public String index() {
 		return "Greetings from Spring Boot!";
 	}
 
-	@GetMapping("/clinicalStudies")
-	public List<ClinicalStudy> getAllStudies() {
-		return clinicalStudyRepository.findAll();
-	}
+	// @GetMapping("/clinicalStudies")
+	// public List<ClinicalStudy> getAllStudies() {
+	// 	return clinicalStudyRepository.findAll();
+	// }
 
 	@GetMapping("/clinicalStudies/{id}")
-	public ClinicalStudy getStudy(@PathVariable("id") String id) {
-		return clinicalStudyRepository.findClinicalStudyById(id);
+	public MyMongoCollection getStudy(@PathVariable("id") String id) {
+		return myMongoCollectionRepository.findClinicalStudyById(id);
 	}
 
 }
