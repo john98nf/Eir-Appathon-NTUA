@@ -4,12 +4,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
+
 import java.util.List;
 import java.io.*;
 
 @RestController
-public class HelloController {
+public class EirRestController {
 
 	@Autowired
 	MyMongoCollectionRepository myMongoCollectionRepository;
@@ -19,14 +21,16 @@ public class HelloController {
 		return "Greetings from Spring Boot!";
 	}
 
-	// @GetMapping("/clinicalStudies")
-	// public List<ClinicalStudy> getAllStudies() {
-	// 	return clinicalStudyRepository.findAll();
-	// }
+	@GetMapping("/clinicalStudies")
+	public List<MyMongoCollection> getAllStudies() {
+		return myMongoCollectionRepository.findAll();
+	}
 
 	@GetMapping("/clinicalStudies/{id}")
-	public MyMongoCollection getStudy(@PathVariable("id") String id) {
-		return myMongoCollectionRepository.findClinicalStudyById(id);
+	public MyMongoCollection getStudy(@PathVariable("id") String id) throws ClinicalStudyNotFoundException {
+		MyMongoCollection collection = myMongoCollectionRepository.findClinicalStudyById(id);
+		if (collection == null) throw new ClinicalStudyNotFoundException(id);
+		return collection;
 	}
 
 }
