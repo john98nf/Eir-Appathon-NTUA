@@ -26,7 +26,7 @@ cd "${INPUT_FOLDER}"
 for i in {0..449}
 do
     if [ $i -lt 10 ];
-    then 
+    then
         Num="000${i}"
     elif [ $i -lt 100 ];
     then
@@ -53,7 +53,7 @@ do
     do
         echo "File ${file_array[$i]} is processed"
         
-        mongoimport --db eir --collection clinicalStudies --file ${file_array[$i]}        
+        mongoimport --db eir --collection clinicalStudies --file ${file_array[$i]}
     done
 
 done

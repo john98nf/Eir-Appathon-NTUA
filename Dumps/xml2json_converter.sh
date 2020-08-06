@@ -25,7 +25,7 @@ INPUT_FOLDER="${PROJECT_FOLDER}/Dumps/xml"
 for i in {0..449}
 do
     if [ $i -lt 10 ];
-    then 
+    then
         Num="000${i}"
     elif [ $i -lt 100 ];
     then
@@ -56,7 +56,7 @@ do
         output_file="${file_array[$i]%.xml}.json"
 
         # Main job
-        python3 -m xmljson -d parker -o "${CURRENT_OUTPUT_FOLDER}/${output_file}" "${CURRENT_INPUT_FOLDER}/${file_array[$i]}"
+        python3 -m xmljson -d gdata -o "${CURRENT_OUTPUT_FOLDER}/${output_file}" "${CURRENT_INPUT_FOLDER}/${file_array[$i]}"
     done
 
 done
