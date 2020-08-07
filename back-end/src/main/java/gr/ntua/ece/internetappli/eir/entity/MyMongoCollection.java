@@ -2,9 +2,10 @@ package gr.ntua.ece.internetappli.eir.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.hateoas.RepresentationModel;
 
 @Document(collection = "clinicalStudies")
-public class MyMongoCollection {
+public class MyMongoCollection extends RepresentationModel {
     @Id
     private String id;
     private ClinicalStudy clinical_study;
