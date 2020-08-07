@@ -17,6 +17,7 @@ import gr.ntua.ece.internetappli.eir.repository.*;
 import gr.ntua.ece.internetappli.eir.repository.exception.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.io.*;
 
 @RestController
@@ -26,35 +27,42 @@ public class EirRestController {
 	@Autowired
 	MyMongoCollectionRepository myMongoCollectionRepository;
 
-	@RequestMapping("/")
-	public String index() {
-		return "Greetings from Spring Boot Restfull App!";
+	@RequestMapping(value = "/",produces = MediaTypes.HAL_JSON_VALUE)
+	public EntityModel<String> index() {
+		return new EntityModel<>("Greetings from Eir Restfull Web Service!",
+								ControllerLinkBuilder.linkTo(EirRestController.class)
+								.withSelfRel());
 	}
 
-	@GetMapping("/clinicalStudies")
-	public List<MyMongoCollection> getAllStudies() {
-		List<MyMongoCollection> result = myMongoCollectionRepository.findAll();
-		// Link selflink = ControllerLinkBuilder.linkTo(EirRestController.class)
-		// 									.slash("clinicalStudies")
-		// 									.withSelfRel();
-		// result.add(selflink);
-		return result;
+	@GetMapping(value = "/clinicalStudies",produces = MediaTypes.HAL_JSON_VALUE)
+	public CollectionModel<EntityModel<MyMongoCollection>> getAllStudies() {
+		List<EntityModel<MyMongoCollection>> result = myMongoCollectionRepository.findAll().stream()
+													    .map(collection -> new EntityModel<>(collection,
+														ControllerLinkBuilder.linkTo(EirRestController.class)
+															.slash("clinicalStudies")
+															.slash(collection.getId())
+															.withSelfRel(),
+														ControllerLinkBuilder.linkTo(EirRestController.class)
+															.slash("clinicalStudies")
+															.withRel("allStudies")))
+													    .collect(Collectors.toList());
+	
+		return new CollectionModel<>(result, ControllerLinkBuilder.linkTo(EirRestController.class)
+														.slash("clinicalStudies")
+														.withSelfRel());
 	}
 
 	@GetMapping(value = "/clinicalStudies/{id}",produces = MediaTypes.HAL_JSON_VALUE)
-	public MyMongoCollection getStudy(@PathVariable("id") String id) throws ClinicalStudyNotFoundException {
+	public EntityModel<MyMongoCollection> getStudy(@PathVariable("id") String id) throws ClinicalStudyNotFoundException {
 		MyMongoCollection collection = myMongoCollectionRepository.findClinicalStudyById(id);
 		if (collection == null) throw new ClinicalStudyNotFoundException(id);
-		Link selflink = ControllerLinkBuilder.linkTo(EirRestController.class)
-											.slash("clinicalStudies")
-											.slash(collection.getId())
-											.withSelfRel();
-		Link linkToAll = ControllerLinkBuilder.linkTo(EirRestController.class)
-											.slash("clinicalStudies")
-											.withRel("allStudies");
-		collection.add(selflink);
-		collection.add(linkToAll);
-		return collection;
+		return new EntityModel<>(collection,ControllerLinkBuilder.linkTo(EirRestController.class)
+												.slash("clinicalStudies")
+												.slash(collection.getId())
+												.withSelfRel(),
+											ControllerLinkBuilder.linkTo(EirRestController.class)
+													.slash("clinicalStudies")
+													.withRel("allStudies"));
 	}
 
 }
