@@ -1,4 +1,6 @@
-package gr.ntua.ece.internetappli.eir;
+package gr.ntua.ece.internetappli.eir.repository;
+
+import gr.ntua.ece.internetappli.eir.entity.*;
 
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.MongoRepository;

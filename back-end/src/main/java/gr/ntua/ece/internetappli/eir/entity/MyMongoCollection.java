@@ -1,4 +1,4 @@
-package gr.ntua.ece.internetappli.eir;
+package gr.ntua.ece.internetappli.eir.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

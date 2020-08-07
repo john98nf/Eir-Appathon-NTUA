@@ -1,4 +1,4 @@
-package gr.ntua.ece.internetappli.eir;
+package gr.ntua.ece.internetappli.eir.entity;
 
 public class Enrollment {
     // Value $t & Attribute type of

@@ -1,4 +1,4 @@
-package gr.ntua.ece.internetappli.eir;
+package gr.ntua.ece.internetappli.eir.repository.exception;
 
 import java.lang.RuntimeException;
 
