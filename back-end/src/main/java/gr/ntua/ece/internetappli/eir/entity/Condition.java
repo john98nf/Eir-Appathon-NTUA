@@ -1,20 +1,19 @@
 package gr.ntua.ece.internetappli.eir.entity;
 
 public class Condition {
-    // Value of condition according to GData
-    // XML to JSON convention
-    private String $t;
+    
+    private String value;
     public Condition() {}
 
-    public Condition(String $t) {
-        this.$t = $t;
+    public Condition(String value) {
+        this.value = value;
     }
 
     public String getValue() {
-        return $t;
+        return value;
     }
 
-    public void setValue(String $t) {
-        this.$t = $t;
+    public void setValue(String value) {
+        this.value = value;
     }
 }

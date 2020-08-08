@@ -1,17 +1,14 @@
 package gr.ntua.ece.internetappli.eir.entity;
 
 public class Enrollment {
-    // Value $t & Attribute type of
-    // enrollment according to GData
-    // XML to JSON convention
     private String type;
-    private String $t;
+    private String value;
 
     public Enrollment() {};
 
-    public Enrollment(String type, String $t) {
+    public Enrollment(String type, String value) {
         this.type = type;
-        this.$t = $t;
+        this.value = value;
     };
 
     public String getType() {
@@ -23,11 +20,11 @@ public class Enrollment {
     }
 
     public String getValue() {
-        return $t;
+        return value;
     }
 
-    public void setValue(String $t) {
-        this.$t = $t;
+    public void setValue(String value) {
+        this.value = value;
     }
 
 }

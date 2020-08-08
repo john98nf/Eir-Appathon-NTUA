@@ -3,7 +3,7 @@ package gr.ntua.ece.internetappli.eir.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "clinicalStudies")
+@Document(collection = "clinical_studies")
 public class MyMongoCollection {
     @Id
     private String id;
