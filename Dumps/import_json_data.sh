@@ -52,7 +52,7 @@ do
     for (( i=0; i<$length; i++ ))
     do
         echo "File ${file_array[$i]} is processed"
-        
+        sed -i 's/$t/value/g' ${file_array[$i]}
         mongoimport --db eir --collection clinicalStudies --file ${file_array[$i]}
     done
 

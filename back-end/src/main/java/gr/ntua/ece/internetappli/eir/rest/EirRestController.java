@@ -18,6 +18,7 @@ import gr.ntua.ece.internetappli.eir.repository.exception.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.regex.PatternSyntaxException;
 import java.io.*;
 
 @RestController
@@ -27,8 +28,8 @@ public class EirRestController {
 	@Autowired
 	MyMongoCollectionRepository myMongoCollectionRepository;
 
-	@Autowired
-	ActualNumberOfVolunteersRepository actualNumberOfVolunteersRepository;
+	// @Autowired
+	// ActualNumberOfVolunteersRepository actualNumberOfVolunteersRepository;
 
 	@RequestMapping(value = "/",produces = MediaTypes.HAL_JSON_VALUE)
 	public EntityModel<String> index() {
@@ -71,7 +72,7 @@ public class EirRestController {
 	@GetMapping(value = "/actualNumberOfVolunteers/{condition}",produces = MediaTypes.HAL_JSON_VALUE)
 	public EntityModel<ActualNumberOfVolunteers> getActualNumberOfVolunteers(@PathVariable("condition") String condition) throws ResourceNotFoundException {
 		// Drop '+' character and replace it with actual spaces
-		ActualNumberOfVolunteers result = actualNumberOfVolunteersRepository.sumOfVolunteers(condition);
+		ActualNumberOfVolunteers result = myMongoCollectionRepository.sumOfVolunteers(condition.replace('+',' '));
 		if (result == null) throw new ResourceNotFoundException();
 		return new EntityModel<>(result,ControllerLinkBuilder.linkTo(EirRestController.class)
 												.slash("actualNumberOfVolunteers")
