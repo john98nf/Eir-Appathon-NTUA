@@ -28,10 +28,7 @@ public class EirRestController {
 	@Autowired
 	MyMongoCollectionRepository myMongoCollectionRepository;
 
-	// @Autowired
-	// ActualNumberOfVolunteersRepository actualNumberOfVolunteersRepository;
-
-	@RequestMapping(value = "/",produces = MediaTypes.HAL_JSON_VALUE)
+	@RequestMapping(value = {"/",""},produces = MediaTypes.HAL_JSON_VALUE)
 	public EntityModel<String> index() {
 		return new EntityModel<>("Greetings from Eir Restfull Web Service!",
 								ControllerLinkBuilder.linkTo(EirRestController.class)
@@ -76,6 +73,17 @@ public class EirRestController {
 		if (result == null) throw new ResourceNotFoundException();
 		return new EntityModel<>(result,ControllerLinkBuilder.linkTo(EirRestController.class)
 												.slash("actualNumberOfVolunteers")
+												.slash(condition)
+												.withSelfRel());
+	}
+
+	@GetMapping(value = "/anticipatedNumberOfVolunteers/{condition}",produces = MediaTypes.HAL_JSON_VALUE)
+	public EntityModel<AnticipatedNumberOfVolunteers> getAnticipatedNumberOfVolunteers(@PathVariable("condition") String condition) throws ResourceNotFoundException {
+		// Drop '+' character and replace it with actual spaces
+		AnticipatedNumberOfVolunteers result = myMongoCollectionRepository.sumOfAnticipatedVolunteers(condition.replace('+',' '));
+		if (result == null) throw new ResourceNotFoundException();
+		return new EntityModel<>(result,ControllerLinkBuilder.linkTo(EirRestController.class)
+												.slash("anticipatedNumberOfVolunteers")
 												.slash(condition)
 												.withSelfRel());
 	}
