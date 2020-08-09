@@ -54,9 +54,9 @@ public class EirRestController {
 	}
 
 	@GetMapping(value = "/clinicalStudies/{id}",produces = MediaTypes.HAL_JSON_VALUE)
-	public EntityModel<MyMongoCollection> getStudy(@PathVariable("id") String id) throws ClinicalStudyNotFoundException {
+	public EntityModel<MyMongoCollection> getStudy(@PathVariable("id") String id) {
 		MyMongoCollection collection = myMongoCollectionRepository.findClinicalStudyById(id);
-		if (collection == null) throw new ClinicalStudyNotFoundException(id);
+		if (collection == null) throw new ClinicalStudyNotFoundException();
 		return new EntityModel<>(collection,ControllerLinkBuilder.linkTo(EirRestController.class)
 												.slash("clinicalStudies")
 												.slash(collection.getId())
@@ -67,10 +67,10 @@ public class EirRestController {
 	}
 
 	@GetMapping(value = "/actualNumberOfVolunteers/{condition}",produces = MediaTypes.HAL_JSON_VALUE)
-	public EntityModel<ActualNumberOfVolunteers> getActualNumberOfVolunteers(@PathVariable("condition") String condition) throws ResourceNotFoundException {
+	public EntityModel<ActualNumberOfVolunteers> getActualNumberOfVolunteers(@PathVariable("condition") String condition) {
 		// Drop '+' character and replace it with actual spaces
 		ActualNumberOfVolunteers result = myMongoCollectionRepository.sumOfVolunteers(condition.replace('+',' '));
-		if (result == null) throw new ResourceNotFoundException();
+		if (result == null) throw new ActualNoVNotFoundException();
 		return new EntityModel<>(result,ControllerLinkBuilder.linkTo(EirRestController.class)
 												.slash("actualNumberOfVolunteers")
 												.slash(condition)
@@ -78,10 +78,10 @@ public class EirRestController {
 	}
 
 	@GetMapping(value = "/anticipatedNumberOfVolunteers/{condition}",produces = MediaTypes.HAL_JSON_VALUE)
-	public EntityModel<AnticipatedNumberOfVolunteers> getAnticipatedNumberOfVolunteers(@PathVariable("condition") String condition) throws ResourceNotFoundException {
+	public EntityModel<AnticipatedNumberOfVolunteers> getAnticipatedNumberOfVolunteers(@PathVariable("condition") String condition) {
 		// Drop '+' character and replace it with actual spaces
 		AnticipatedNumberOfVolunteers result = myMongoCollectionRepository.sumOfAnticipatedVolunteers(condition.replace('+',' '));
-		if (result == null) throw new ResourceNotFoundException();
+		if (result == null) throw new AnticipatedNoVNotFoundException();
 		return new EntityModel<>(result,ControllerLinkBuilder.linkTo(EirRestController.class)
 												.slash("anticipatedNumberOfVolunteers")
 												.slash(condition)
