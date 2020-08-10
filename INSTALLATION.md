@@ -15,7 +15,8 @@ exit
 * [npm](https://www.npmjs.com/get-npm)
 * [node.js](https://nodejs.org/en/)
 * [typescript](https://www.npmjs.com/package/typescript)
-* [@angular/cli](https://www.npmjs.com/package/@angular/cli/v/9.0.4)
+* [Angular CLI](https://cli.angular.io/)
+* [xmljson](https://pypi.org/project/xmljson/) Python 3 library (ONLY if you're sticking with option A, concering database creation)
 
 ## Database Creation
 
@@ -67,4 +68,4 @@ cd /path/to/Eir-Appathon-NTUA/front-end
 npm install                               # Necessary only the first time you'll try to run it
 ng serve
 ```
-Now you can explore Eir Web App and its fuctionalities at localhost:4200/eir.
+Now you can explore Eir Web App and its fuctionalities at http://localhost:4200/eir.
