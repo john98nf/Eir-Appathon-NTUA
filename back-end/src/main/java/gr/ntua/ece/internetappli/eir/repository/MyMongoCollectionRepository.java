@@ -32,12 +32,23 @@ public interface MyMongoCollectionRepository extends MongoRepository<MyMongoColl
 
     @Aggregation(pipeline = {
         "{$match: {'clinical_study.condition.value': /?0/}}",
-        "{$project : { start: { array: {$split: ['$clinical_study.study_first_submitted.value', ', ']}},finish: {array: {$split: ['$clinical_study.last_update_submitted.value', ', ']}}}}",
-        "{$project : { start: { array : { $split: [{$arrayElemAt: ['$start.array',0]},' ']},year: { $arrayElemAt: ['$start.array',1]}},finish: {array: {$split: [{$arrayElemAt: ['$finish.array',0]},' ']},year: {$arrayElemAt: ['$finish.array',1]}}}}",
-        "{$project : { start: { year: '$start.year',month: {$arrayElemAt: ['$start.array',0]},day: {$arrayElemAt: ['$start.array',1]}},finish:{year: '$finish.year',month: {$arrayElemAt: ['$finish.array',0]},day: {$arrayElemAt: ['$finish.array',1]}}}}",
+        "{$project: {" +
+            "start :" +
+            "{" +
+                "year: {$arrayElemAt: [{$split:  ['$clinical_study.study_first_submitted.value', ', ']},1]}," +
+                "month: {$arrayElemAt: [{$split: [{$arrayElemAt: [{$split: ['$clinical_study.study_first_submitted.value', ', ']}, 0]}, ' ']},0]}," +
+                "day: {$arrayElemAt: [{$split:   [{$arrayElemAt: [{$split: ['$clinical_study.study_first_submitted.value', ', ']}, 0]}, ' ']},1]}" +
+            "}," +
+            "finish :" +
+            "{" +
+                "year: {$arrayElemAt: [{$split: ['$clinical_study.last_update_submitted.value', ', ']},1]}," +
+                "month: {$arrayElemAt: [{$split: [{$arrayElemAt: [{$split: ['$clinical_study.last_update_submitted.value', ', ']}, 0]}, ' ']},0]}," +
+                "day: {$arrayElemAt: [{$split:   [{$arrayElemAt: [{$split: ['$clinical_study.last_update_submitted.value', ', ']}, 0]}, ' ']},1]}" +
+            "}" +
+        "}}",
         "{$addFields:{ months: ['','January','February','March','April','May','June','July','August','September','October','November','December']}}",
         "{$project : { start: { year: '$start.year',month:{$indexOfArray: ['$months','$start.month']},day: '$start.day'},finish:{year: '$finish.year',month:{$indexOfArray: ['$months','$finish.month']},day: '$finish.day'}}}",
-        "{$project : { total_time: { $divide: [{$subtract:[{$dateFromString: {dateString: {$concat: [{$toString: '$finish.year'},'-',{$toString: '$finish.month'},'-',{$toString: '$finish.day'}]},}},{$dateFromString: {dateString: {$concat: [{$toString: '$start.year'},'-',{$toString: '$start.month'},'-',{$toString: '$start.day'}]},}}]},1000 * 60 * 60 * 24]}}}",
+        "{$project : { total_time: {$subtract:[{$dateFromString: {dateString: {$concat: [{$toString: '$finish.year'},'-',{$toString: '$finish.month'},'-',{$toString: '$finish.day'}]},}},{$dateFromString: {dateString: {$concat: [{$toString: '$start.year'},'-',{$toString: '$start.month'},'-',{$toString: '$start.day'}]},}}]}}}",
         "{$group: {_id:null,average: {$avg: '$total_time'}}}"
     })
     public AverageTimeForRequitment averageTimeForRequitmentInDays(String condition);
