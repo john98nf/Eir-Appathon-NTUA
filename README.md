@@ -17,7 +17,7 @@ For the dictory management, it was decided to follow the structure mentioned bel
 
 * The entiry front-end server-project, with its components, is located inside the ```front-end``` folder.
 * The back-end service with the rest, entities and repository components can be found inside the ```back-end``` folder.
-* The folder ```Dumps``` has been created for storing datasets mentioned above (not uploaded in this repo), database dump-binary files (not upload in this repo) and all the appropriate scripts used in the process of database constraction. Further more, inside this folder anyone can find the ```DATABASE_CREATION.md``` guide.
+* The folder ```Dumps``` has been created for storing datasets mentioned above (not uploaded in this repo), database dump-binary files (not upload in this repo) and all the appropriate scripts used in the process of database constraction.
 
 ## Technologies & Datasets
 
