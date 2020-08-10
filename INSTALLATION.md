@@ -28,7 +28,7 @@ Clone or download this project and navigate to its home folder. Keep in mind tha
 ```
 cd /path/to/Eir-Appathon-NTUA/Dumps
 wget https://clinicaltrials.gov/AllPublicXML.zip
-unzip AllPublicXML.zip -d xml                       # Data are available in xml form, which is not supported by mongodb
+unzip AllPublicXML.zip -d xml
 export PROJECT_FOLDER="/path/to/Eir-Appathon-NTUA"
 ./xml2json_converter.sh
 ./import_json_data.sh
