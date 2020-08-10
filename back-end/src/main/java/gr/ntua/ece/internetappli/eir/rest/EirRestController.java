@@ -19,6 +19,7 @@ import gr.ntua.ece.internetappli.eir.repository.exception.*;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.regex.PatternSyntaxException;
+import java.lang.IllegalArgumentException;
 import java.io.*;
 
 @RestController
@@ -55,8 +56,19 @@ public class EirRestController {
 
 	@GetMapping(value = "/clinicalStudies/{id}",produces = MediaTypes.HAL_JSON_VALUE)
 	public EntityModel<MyMongoCollection> getStudy(@PathVariable("id") String id) {
-		MyMongoCollection collection = myMongoCollectionRepository.findClinicalStudyById(id);
+
+		if (!id.matches("[A-Fa-f0-9]+")) throw new InvalidQueryException();
+
+		MyMongoCollection collection;
+		try {
+			collection = myMongoCollectionRepository.findClinicalStudyById(id);
+		}
+		catch (IllegalArgumentException e) {
+			throw new InvalidQueryException();
+		}
+
 		if (collection == null) throw new ClinicalStudyNotFoundException();
+
 		return new EntityModel<>(collection,ControllerLinkBuilder.linkTo(EirRestController.class)
 												.slash("clinicalStudies")
 												.slash(collection.getId())
@@ -68,9 +80,15 @@ public class EirRestController {
 
 	@GetMapping(value = "/actualNumberOfVolunteers/{condition}",produces = MediaTypes.HAL_JSON_VALUE)
 	public EntityModel<ActualNumberOfVolunteers> getActualNumberOfVolunteers(@PathVariable("condition") String condition) {
+
+		condition = condition.replace('+',' ');
+		if (!condition.matches("[A-Za-z0-9]+")) throw new InvalidQueryException();
+
 		// Drop '+' character and replace it with actual spaces
-		ActualNumberOfVolunteers result = myMongoCollectionRepository.sumOfVolunteers(condition.replace('+',' '));
+		ActualNumberOfVolunteers result = myMongoCollectionRepository.sumOfVolunteers(condition);
+
 		if (result == null) throw new ActualNoVNotFoundException();
+
 		return new EntityModel<>(result,ControllerLinkBuilder.linkTo(EirRestController.class)
 												.slash("actualNumberOfVolunteers")
 												.slash(condition)
@@ -79,9 +97,15 @@ public class EirRestController {
 
 	@GetMapping(value = "/anticipatedNumberOfVolunteers/{condition}",produces = MediaTypes.HAL_JSON_VALUE)
 	public EntityModel<AnticipatedNumberOfVolunteers> getAnticipatedNumberOfVolunteers(@PathVariable("condition") String condition) {
+
 		// Drop '+' character and replace it with actual spaces
-		AnticipatedNumberOfVolunteers result = myMongoCollectionRepository.sumOfAnticipatedVolunteers(condition.replace('+',' '));
+		condition = condition.replace('+',' ');
+		if (!condition.matches("[A-Za-z0-9]+")) throw new InvalidQueryException();
+
+		AnticipatedNumberOfVolunteers result = myMongoCollectionRepository.sumOfAnticipatedVolunteers(condition);
+
 		if (result == null) throw new AnticipatedNoVNotFoundException();
+
 		return new EntityModel<>(result,ControllerLinkBuilder.linkTo(EirRestController.class)
 												.slash("anticipatedNumberOfVolunteers")
 												.slash(condition)
@@ -90,9 +114,15 @@ public class EirRestController {
 
 	@GetMapping(value = "/averageTimeForRequitment/{condition}",produces = MediaTypes.HAL_JSON_VALUE)
 	public EntityModel<AverageTimeForRequitment> getAverageTimeForRequitment(@PathVariable("condition") String condition) {
+
 		// Drop '+' character and replace it with actual spaces
-		AverageTimeForRequitment result = myMongoCollectionRepository.averageTimeForRequitmentInDays(condition.replace('+',' '));
+		condition = condition.replace('+',' ');
+		if (!condition.matches("[A-Za-z0-9]+")) throw new InvalidQueryException();
+
+		AverageTimeForRequitment result = myMongoCollectionRepository.averageTimeForRequitmentInDays(condition);
+
 		if (result == null) throw new AnticipatedNoVNotFoundException();
+
 		return new EntityModel<>(result,ControllerLinkBuilder.linkTo(EirRestController.class)
 												.slash("averageTimeForRequitment")
 												.slash(condition)

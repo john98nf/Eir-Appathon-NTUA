@@ -29,4 +29,11 @@ public class ExceptionHandlerAdvice {
   public String actualNoVNotFoundHandler(ActualNoVNotFoundException e) {
     return e.getMessage();
   }
+
+  @ResponseBody
+  @ExceptionHandler(InvalidQueryException.class)
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  public String invalidQueryHandler(InvalidQueryException e) {
+    return e.getMessage();
+  }
 }
