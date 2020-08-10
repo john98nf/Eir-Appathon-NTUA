@@ -1,0 +1,30 @@
+# Eir-Appathon-NTUA
+
+## General
+Το Eir αποτελεί μία διαδικτυακή εφαρμογή που υλοποιήθηκε στα πλαίσια του [Appathon@NTUA](http://147.102.19.19/wordpress), ο οποίος πραγματοποιήθηκε κατά τη διάρκεια του μαθήματος ["Διαδίκτυο & Εφαρμογές"](http://ecourses.dbnet.ntua.gr/15372.html) της σχολής [Ηλεκτρολόγων Μηχανικών & Μηχανικών Υπολογιστών του Εθνικού Μετσόβιου Πολυτεχνείου](https://www.ece.ntua.gr/gr).Το όνομα πηγάζει από την Σκαδιναβική μυθολογία και συγκεκριμένα την ομώνυμη θεότητα - valkyrie που ήταν συνιφασμένη με την "θεραπευτική τέχνη" και τις εφαρμογές της ιατρικής. Περισσότερες εγκυκλοπαιδικές πληροφορίες μπορούν να βρεθούν [εδώ](https://en.wikipedia.org/wiki/Eir).
+
+## Utilities
+Αξιοποιώντας διαθέσιμα δεδομένα της ιστοσελίδας https://clinicaltrials.gov/, η διαδικτυακή εφαρμογή Eir παρουσιάζει το σύνολο των ασθενών που συμμετέχουν σε κλινικές δοκιμές (enrollment – type: "Actual"), οι οποίες αφορούν μια συγκεκριμένη ασθένεια (π.χ. Sjogren’s Syndrome), καθώς επίσης και το πλήθος τον ασθενών που αναμένεται να συμμετάσχουν (enrollment - type: "Anticipated"). Παράλληλα, πραγματοποιείται υπολογισμός και παρουσίαση του μέσου χρόνου που χρειάστηκε για την εύρεση των ασθενών (aka στρατολόγηση), λαμβάνοντας υπόψη το πότε ξεκίνησε η κλινική μελέτη και πότε έγινε τελευταία φορά update. (Η προαναφερθείσα λειτουργία βασίζεται σε θέμα, που προτάθηκε από τους υπεύθυνους και διδάσκοντες του μαθήματος και συγκεκριμένα πρόκειται για αυτό με τη κωδική ονομασία CTGOV-01.)
+
+## Directories' Structure
+For the dictory management, it was decided to follow the structure mentioned below:
+
+The entiry front-end server-project, with its components, is located inside the front-end folder.
+The back-end service with the rest, entities and repository components can be found inside the back-end folder.
+The folder Dumps has been created for storing datasets mentioned above (not uploaded in this repo), database dump-binary files (not upload in this repo) and all the appropriate scripts used in the process of database constraction. Further more, inside this folder anyone can find the DATABASE_CREATION.md guide.
+Όσον αφορά τη διαχείριση των φακέλων του εν λόγω project, επιλέχθηκε να αξιοποιήθηκε η δομή που περιγράφεται παρακάτω:
+* Το front-end κομμάτι εμπεριέχεται στον φάκελο ```front-end```.
+* Η rest υπηρεσία του back-end βρίσκεται μέσα στον φάκελο ```back-end```.
+* Ο φάκελος ```Dumps``` δημιουργήθηκε για την αποθήκευση των προαναφερθέντων αρχείων δεδομένων (δεν καταγράφονται στο τρέχον repo), την αποθήκευση των δυαδικών dump αρχείων της βάσης (δεν καταγράφονται στο τρέχον repo) και το σύνολο των απαραίτητων scripts για την κατασκευή της μη σχεσιακής βάσης. Επιπλέον, στον ίδιο φάκελο κανείς μπορεί να μελετήσει τον οδηγό κατασκευής της βάσης στο αρχείο ```DATABASE_CREATION.md```.
+
+## Technologies & Datasets
+
+* Λήψη των δεδομένα που αξιοποιήθηκαν μπορεί να γίνει από τον ακόλουθο [σύνδεσμο](https://clinicaltrials.gov/AllPublicXML.zip).
+* Ως σύστημα διαχείρησης της μη σχεσιακής βάσης χρησιμοποιήθηκε η [MongoDB](https://www.mongodb.com/).
+* Ο back-end εξυπηρετητής υλοποιήθηκε σε [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html), ενώ ταυτόχρονα αξιοποιήθηκε το [Spring Boot Framework](https://spring.io/projects/spring-boot). Πιο συγκεκριμένα, βιβλιοθήκες και εργαλεία τα οποία προστέθηκαν είναι τα [Spring Web Serices](https://spring.io/projects/spring-ws), [Spring Hateoas](https://spring.io/projects/spring-hateoas), [Spring Data MongoDB](https://spring.io/projects/spring-data-mongodb) και άλλα.
+* Ο front-end εξυπηρετητής και οι συνιστώσες του κατασκευάστηκαν με HTML 5/CSS 3 και το [Angular Framework](https://angular.io/) και τη γλώσσα [Typescript](https://www.typescriptlang.org/).
+* [Maven Build Tool](https://maven.apache.org/).
+
+## INSTALLATION
+
+Τυχόν ενδιαφερόμενοι για την εγκατάσταση και δοκιμή της διαδικτυακής υπερησίας Eir, είναι ευπρόσδεκτοι να μελετήσουν τον σχετικό οδηγό στο αρχείο ```INSTALLATION.md```.
