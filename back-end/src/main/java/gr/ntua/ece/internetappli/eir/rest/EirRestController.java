@@ -88,4 +88,15 @@ public class EirRestController {
 												.withSelfRel());
 	}
 
+	@GetMapping(value = "/averageTimeForRequitment/{condition}",produces = MediaTypes.HAL_JSON_VALUE)
+	public EntityModel<AverageTimeForRequitment> getAverageTimeForRequitment(@PathVariable("condition") String condition) {
+		// Drop '+' character and replace it with actual spaces
+		AverageTimeForRequitment result = myMongoCollectionRepository.averageTimeForRequitmentInDays(condition.replace('+',' '));
+		if (result == null) throw new AnticipatedNoVNotFoundException();
+		return new EntityModel<>(result,ControllerLinkBuilder.linkTo(EirRestController.class)
+												.slash("averageTimeForRequitment")
+												.slash(condition)
+												.withSelfRel());
+	}
+
 }
