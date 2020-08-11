@@ -1,12 +1,30 @@
 <div style="padding: 13px;">
-    <mat-card class="mat-elevation-z2">
-        <mat-card-header>
-            <mat-card-title>Custom Theme Palette</mat-card-title>
-        </mat-card-header>
-        <mat-card-actions>
-            <button mat-raised-button color="primary">Primary</button>
-            <button mat-raised-button color="accent">Accent</button>
-            <button mat-raised-button color="warn">Warn</button>
-        </mat-card-actions>
-    </mat-card>
+  <div>
+    <h1 class="my-title">Eir Web App</h1>
+    <p class="my-subtitle">Appathon@NTUA 2020</p>
+  </div>
+  <span *ngIf="status === null">
+    <div class="wrapper">
+      <mat-spinner color="warn"></mat-spinner>
+    </div>
+    <div class="wrapper">
+      <h3 style="margin-top:10px; color: #607D8B;">Test connection</h3>
+    </div>
+  </span>
+  <span *ngIf="status !== null">
+    <div class="my-text-class">
+        Eir is a simple Web Application, designed and implemented for the contest of Appathon@NTUA.
+        This competition was organised by the teacher and PHD students of the "Internet Applications"
+        course in the School of Electrical & Computer Engineering of the National Technical University of Athens.
+        As far as its name is concerned, it has been inspired by Norse mythology and in more depth by the aforamentioned
+        goddess or else valkyrie, associated with medical skill.
+    </div>
+    <div class="wrapper">
+      <mat-icon class="my-icon-1" style="margin-right:100px;">done_outline</mat-icon>
+      <mat-icon class="my-icon-2">dns</mat-icon>
+    </div>
+    <div class="wrapper">
+      <h3 style="margin-top:10px;color:#607D8B;">Connection with REST back-end service established</h3>
+    </div>
+  </span>
 </div>

@@ -1,0 +1,42 @@
+.my-title {
+    margin-top:50px;
+    text-align:center;
+    font-size: 60px;
+    color: #E91E63;
+}
+.my-subtitle {
+    margin-bottom:75px;
+    margin-top:20px;
+    font-size: 25px;
+    text-align:center;
+    color: #ffffff;
+}
+
+.my-text-class {
+    color: #ffffff;
+    text-align:justify;
+    padding-left: 100px;
+    padding-right: 100px;
+    font-size:18px;
+}
+
+.wrapper {
+    margin-top:10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.my-icon-1 {
+    color:#E91E63;
+    margin-top:100px;
+    margin-bottom:20px;
+    transform: scale(4);
+}
+
+.my-icon-2 {
+    color: #607D8B;
+    margin-top:100px;
+    margin-bottom:20px;
+    transform: scale(4);
+}
