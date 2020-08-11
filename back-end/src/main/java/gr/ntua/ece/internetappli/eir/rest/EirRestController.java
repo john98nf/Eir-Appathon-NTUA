@@ -82,7 +82,7 @@ public class EirRestController {
 	public EntityModel<ActualNumberOfVolunteers> getActualNumberOfVolunteers(@PathVariable("condition") String condition) {
 
 		condition = condition.replace('+',' ');
-		if (!condition.matches("[A-Za-z0-9]+")) throw new InvalidQueryException();
+		if (!condition.matches("[a-zA-Z]+(?:'[a-zA-Z0-9\\s]+)*")) throw new InvalidQueryException();
 
 		// Drop '+' character and replace it with actual spaces
 		ActualNumberOfVolunteers result = myMongoCollectionRepository.sumOfVolunteers(condition);
@@ -100,7 +100,7 @@ public class EirRestController {
 
 		// Drop '+' character and replace it with actual spaces
 		condition = condition.replace('+',' ');
-		if (!condition.matches("[A-Za-z0-9]+")) throw new InvalidQueryException();
+		if (!condition.matches("[a-zA-Z]+(?:'[a-zA-Z0-9\\s]+)*")) throw new InvalidQueryException();
 
 		AnticipatedNumberOfVolunteers result = myMongoCollectionRepository.sumOfAnticipatedVolunteers(condition);
 
@@ -117,7 +117,7 @@ public class EirRestController {
 
 		// Drop '+' character and replace it with actual spaces
 		condition = condition.replace('+',' ');
-		if (!condition.matches("[A-Za-z0-9]+")) throw new InvalidQueryException();
+		if (!condition.matches("[a-zA-Z]+(?:'[a-zA-Z0-9\\s]+)*")) throw new InvalidQueryException();
 
 		AverageTimeForRequitment result = myMongoCollectionRepository.averageTimeForRequitmentInDays(condition);
 

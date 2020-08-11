@@ -53,7 +53,7 @@ do
     do
         echo "File ${file_array[$i]} is processed"
         sed -i 's/$t/value/g' ${file_array[$i]}
-        mongoimport --db eir --collection clinicalStudies --file ${file_array[$i]}
+        mongoimport --db eir --collection clinical_studies --file ${file_array[$i]}
     done
 
 done
