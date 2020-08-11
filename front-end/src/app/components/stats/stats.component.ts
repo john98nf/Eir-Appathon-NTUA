@@ -21,7 +21,8 @@ export class StatsComponent implements OnInit {
     }
 
     onSubmit() {
-        console.log('Send Request for desease named' + this.condition);
+        console.log('Send Request for desease named ' + this.condition);
+        if (this.condition === '') return;
         if (this.oneRequest === false) this.oneRequest = true;
         this.actual = null;
         this.anticipated = null;

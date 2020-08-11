@@ -7,7 +7,7 @@
       <div class="input-grid-item">
           <mat-form-field appearance="outline" color="accent">
             <mat-label>Condition / Desease</mat-label>
-            <input matInput [(ngModel)]="condition" class="input-text">
+            <input matInput [(ngModel)]="condition" class="input-text" (change)="onSubmit()">
           </mat-form-field>
       </div>
       <div class="input-grid-item" style="margin-top: 10px;">
