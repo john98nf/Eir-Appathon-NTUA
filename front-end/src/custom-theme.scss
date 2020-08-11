@@ -4,8 +4,8 @@
 
 // Define a dark theme.
 $dark-primary: mat-palette($mat-pink);
-$dark-accent:  mat-palette($mat-pink,800);
-$dark-warn:    mat-palette($mat-blue-grey,500);
+$dark-accent:  mat-palette($mat-blue-grey,A200);
+$dark-warn:    mat-palette($mat-pink,800);
 
 $dark-theme:   mat-dark-theme(
     $dark-primary,

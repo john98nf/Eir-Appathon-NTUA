@@ -22,3 +22,9 @@ mat-toolbar {
     right: 0;
     bottom: 0;
 }
+
+.my-icon {
+    color: #ffffff;
+    margin-right: 20px;
+    transform: scale(1.5);
+}

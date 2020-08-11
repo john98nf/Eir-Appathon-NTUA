@@ -1,0 +1,53 @@
+<div style="padding: 13px;place-items:ceenter">
+  <div>
+    <h1 class="my-title">Statistics</h1>
+    <p class="my-subtitle">Please choose a desease</p>
+  </div>
+  <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="flex-start" class="input-grid">
+      <div class="input-grid-item">
+          <mat-form-field appearance="outline" color="accent">
+            <mat-label>Condition / Desease</mat-label>
+            <input matInput [(ngModel)]="condition" (change)="onSubmit()" class="input-text">
+          </mat-form-field>
+      </div>
+      <div class="input-grid-item" style="margin-top: 10px;">
+          <button mat-raised-button [disabled]="true" *ngIf="condition === null || condition ===''">Search</button>
+          <button mat-raised-button color="accent" class="zoom" *ngIf="!(condition === null || condition ==='')" (onClick)="onSubmit()">Search</button>
+      </div>
+  </div>
+  <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="flex-start" class="cardList">
+      <mat-card class="cardListItem" mat-elevation-z8>
+          <mat-card-header>
+              <div mat-card-avatar>
+                  <mat-icon class="avatar">group</mat-icon>
+              </div>
+              <mat-card-title>Actual number of Volunteers</mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="card-content">
+            345
+          </mat-card-content>
+      </mat-card>
+      <mat-card class="cardListItem" mat-elevation-z8>
+          <mat-card-header>
+              <div mat-card-avatar>
+                  <mat-icon class="avatar">people_outline</mat-icon>
+              </div>
+              <mat-card-title>Anticipated number of Volunteers</mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="card-content">
+            345
+          </mat-card-content>
+      </mat-card>
+      <mat-card class="cardListItem" mat-elevation-z8>
+          <mat-card-header>
+              <div mat-card-avatar>
+                  <mat-icon class="avatar">history</mat-icon>
+              </div>
+              <mat-card-title>Average Time for Requitment</mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="card-content">
+            345
+          </mat-card-content>
+      </mat-card>
+  </div>
+</div>
