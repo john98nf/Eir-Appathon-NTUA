@@ -36,25 +36,40 @@ export class StatsComponent implements OnInit {
     sendRequestForActualNoV() {
         this.dataService.sendRequestForActualNumberOfVolunteers(this.searchTerm)
                         .subscribe((data: any) => {
-            console.log(data);
-            this.actual = data.number;
-        });
+                                        console.log(data);
+                                        this.actual = data.number;
+                                    },
+                                    error => {
+                                        console.log("Null response for ActualNoV");
+                                        this.actual = 0;
+                                    }
+        );
     }
 
     sendRequestForAnticipatedNoV() {
         this.dataService.sendRequestForAnticipatedNumberOfVolunteers(this.searchTerm)
                         .subscribe((data: any) => {
-            console.log(data);
-            this.anticipated = data.number;
-        });
+                                        console.log(data);
+                                        this.anticipated = data.number;
+                                    },
+                                    error => {
+                                        console.log("Null response for AnticipatedNoV");
+                                        this.anticipated = 0;
+                                    }
+        );
     }
 
     sendRequestForAverageTimeFoR() {
         this.dataService.sendRequestForAverageTimeForRequitment(this.searchTerm)
                         .subscribe((data: any) => {
-            console.log(data);
-            this.average_duration = data.days;
-        });
+                                        console.log(data);
+                                        this.average_duration = data.days;
+                                    },
+                                    error => {
+                                        console.log("Null response for average time duration");
+                                        this.average_duration = 0;
+                                    }
+        );
     }
 
     formatSearchTerm() {
