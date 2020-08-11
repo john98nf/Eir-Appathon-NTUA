@@ -22,7 +22,7 @@ export class DataService {
         return this.httpClient.get(this.REST_API_CLINICAL_STUDIES);
     }
 
-    public sendRequestForClinicalStudy(id: String){
+    public sendRequestForClinicalStudy(id: string){
         return this.httpClient.get(this.REST_API_CLINICAL_STUDIES + "/" + id);
     }
 

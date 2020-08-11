@@ -7,15 +7,25 @@
       <div class="input-grid-item">
           <mat-form-field appearance="outline" color="accent">
             <mat-label>Condition / Desease</mat-label>
-            <input matInput [(ngModel)]="condition" (change)="onSubmit()" class="input-text">
+            <input matInput [(ngModel)]="condition" class="input-text">
           </mat-form-field>
       </div>
       <div class="input-grid-item" style="margin-top: 10px;">
           <button mat-raised-button [disabled]="true" *ngIf="condition === null || condition ===''">Search</button>
-          <button mat-raised-button color="accent" class="zoom" *ngIf="!(condition === null || condition ==='')" (onClick)="onSubmit()">Search</button>
+          <button mat-raised-button color="accent" class="zoom" *ngIf="!(condition === null || condition ==='')" (click)="onSubmit()">Search</button>
       </div>
   </div>
-  <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="flex-start" class="cardList">
+  <span *ngIf="(oneRequest === true) && (actual === null || anticipated === null || average_duration === null)">
+      <div style="margin-top:100px">
+          <div class="wrapper">
+              <mat-spinner color="accent"></mat-spinner>
+            </div>
+            <div class="wrapper">
+              <h3 style="margin-top:10px; color: #B0BEC5;">Sending Request</h3>
+            </div>
+      </div>
+  </span>
+  <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="flex-start" class="cardList"  *ngIf="actual !== null && anticipated !== null && average_duration !== null">
       <mat-card class="cardListItem" mat-elevation-z8>
           <mat-card-header>
               <div mat-card-avatar>
@@ -24,7 +34,7 @@
               <mat-card-title>Actual number of Volunteers</mat-card-title>
           </mat-card-header>
           <mat-card-content class="card-content">
-            345
+            {{actual}}
           </mat-card-content>
       </mat-card>
       <mat-card class="cardListItem" mat-elevation-z8>
@@ -35,7 +45,7 @@
               <mat-card-title>Anticipated number of Volunteers</mat-card-title>
           </mat-card-header>
           <mat-card-content class="card-content">
-            345
+            {{anticipated}}
           </mat-card-content>
       </mat-card>
       <mat-card class="cardListItem" mat-elevation-z8>
@@ -46,7 +56,7 @@
               <mat-card-title>Average Time for Requitment</mat-card-title>
           </mat-card-header>
           <mat-card-content class="card-content">
-            345
+            {{average_duration}} Days
           </mat-card-content>
       </mat-card>
   </div>

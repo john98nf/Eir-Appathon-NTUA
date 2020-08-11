@@ -30,6 +30,7 @@
 }
 .cardListItem {
     margin:10px;
+    height: 150px;
     flex: 1 1 420px;
     flex: 0 1 420px;
 }
@@ -51,7 +52,6 @@
 .avatar {
     transform: scale(2);
     margin-left:5px;
-    margin-top:5px;
     color: #B0BEC5;
 }
 .zoom {
@@ -71,6 +71,7 @@
     text-align: center;
     margin: 20px 20px 20px 20px;
     font-size: 40px;
+    color: #69F0AE;
 }
 
 .input-text {
