@@ -19,19 +19,19 @@ public interface MyMongoCollectionRepository extends MongoRepository<MyMongoColl
     public MyMongoCollection findClinicalStudyById(String id);
 
     @Aggregation(pipeline = {
-        "{$match: {$and: [ {'clinical_study.condition.value': /?0/}, {'clinical_study.enrollment.type':'Actual'}]}}",
+        "{$match: {$and: [ {'clinical_study.condition.value': '?0'}, {'clinical_study.enrollment.type':'Actual'}]}}",
         "{$group: {_id: null, 'number': {$sum: '$clinical_study.enrollment.value'}}}"
     })
     public ActualNumberOfVolunteers sumOfVolunteers(String condition);
 
     @Aggregation(pipeline = {
-        "{$match: {$and: [ {'clinical_study.condition.value': /?0/}, {'clinical_study.enrollment.type':'Anticipated'}]}}",
+        "{$match: {$and: [ {'clinical_study.condition.value': '?0'}, {'clinical_study.enrollment.type':'Anticipated'}]}}",
         "{$group: {_id: null, 'number': {$sum: '$clinical_study.enrollment.value'}}}"
     })
     public AnticipatedNumberOfVolunteers sumOfAnticipatedVolunteers(String condition);
 
     @Aggregation(pipeline = {
-        "{$match: {'clinical_study.condition.value': /?0/}}",
+        "{$match: {'clinical_study.condition.value': '?0'}}",
         "{$project: {" +
             "start :" +
             "{" +
