@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from './../../services/data.service';
-
+import { HttpUrlEncodingCodec } from '@angular/common/http';
 @Component({
   selector: 'app-stats',
   templateUrl: './stats.component.html',
@@ -27,14 +27,13 @@ export class StatsComponent implements OnInit {
         this.actual = null;
         this.anticipated = null;
         this.average_duration = null;
-        this.formatSearchTerm();
         this.sendRequestForActualNoV();
         this.sendRequestForAnticipatedNoV();
         this.sendRequestForAverageTimeFoR();
     }
 
     sendRequestForActualNoV() {
-        this.dataService.sendRequestForActualNumberOfVolunteers(this.searchTerm)
+        this.dataService.sendRequestForActualNumberOfVolunteers(encodeURIComponent(this.condition))
                         .subscribe((data: any) => {
                                         console.log(data);
                                         this.actual = data.number;
@@ -47,7 +46,7 @@ export class StatsComponent implements OnInit {
     }
 
     sendRequestForAnticipatedNoV() {
-        this.dataService.sendRequestForAnticipatedNumberOfVolunteers(this.searchTerm)
+        this.dataService.sendRequestForAnticipatedNumberOfVolunteers(encodeURIComponent(this.condition))
                         .subscribe((data: any) => {
                                         console.log(data);
                                         this.anticipated = data.number;
@@ -60,7 +59,7 @@ export class StatsComponent implements OnInit {
     }
 
     sendRequestForAverageTimeFoR() {
-        this.dataService.sendRequestForAverageTimeForRequitment(this.searchTerm)
+        this.dataService.sendRequestForAverageTimeForRequitment(encodeURIComponent(this.condition))
                         .subscribe((data: any) => {
                                         console.log(data);
                                         this.average_duration = data.days;
@@ -70,10 +69,6 @@ export class StatsComponent implements OnInit {
                                         this.average_duration = 0;
                                     }
         );
-    }
-
-    formatSearchTerm() {
-        this.searchTerm = this.condition.replace("/ /gi", "+");
     }
 
 }

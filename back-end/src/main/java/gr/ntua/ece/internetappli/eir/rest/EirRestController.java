@@ -12,6 +12,9 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.ControllerLinkBuilder;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.MediaTypes;
+import java.net.URLDecoder;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 import gr.ntua.ece.internetappli.eir.entity.*;
 import gr.ntua.ece.internetappli.eir.repository.*;
@@ -83,9 +86,16 @@ public class EirRestController {
 	@GetMapping(value = "/actualNumberOfVolunteers/{condition}",produces = MediaTypes.HAL_JSON_VALUE)
 	public EntityModel<ActualNumberOfVolunteers> getActualNumberOfVolunteers(@PathVariable("condition") String condition) {
 
-		condition = condition.replace('+',' ');
-
-		// Drop '+' character and replace it with actual spaces
+		// Decode url params
+		try {
+			condition = URLDecoder.decode(condition, StandardCharsets.UTF_8.toString());
+		}
+		catch (IllegalArgumentException e) {
+			throw new InvalidQueryException();
+		}
+		catch (UnsupportedEncodingException e) {
+			throw new InvalidQueryException();
+		}
 		ActualNumberOfVolunteers result = myMongoCollectionRepository.sumOfVolunteers(condition);
 
 		if (result == null) result = new ActualNumberOfVolunteers(new Long(0));
@@ -99,8 +109,16 @@ public class EirRestController {
 	@GetMapping(value = "/anticipatedNumberOfVolunteers/{condition}",produces = MediaTypes.HAL_JSON_VALUE)
 	public EntityModel<AnticipatedNumberOfVolunteers> getAnticipatedNumberOfVolunteers(@PathVariable("condition") String condition) {
 
-		// Drop '+' character and replace it with actual spaces
-		condition = condition.replace('+',' ');
+		// Decode url params
+		try {
+			condition = URLDecoder.decode(condition, StandardCharsets.UTF_8.toString());
+		}
+		catch (IllegalArgumentException e) {
+			throw new InvalidQueryException();
+		}
+		catch (UnsupportedEncodingException e) {
+			throw new InvalidQueryException();
+		}
 
 		AnticipatedNumberOfVolunteers result = myMongoCollectionRepository.sumOfAnticipatedVolunteers(condition);
 
@@ -115,8 +133,16 @@ public class EirRestController {
 	@GetMapping(value = "/averageTimeForRequitment/{condition}",produces = MediaTypes.HAL_JSON_VALUE)
 	public EntityModel<AverageTimeForRequitment> getAverageTimeForRequitment(@PathVariable("condition") String condition) {
 
-		// Drop '+' character and replace it with actual spaces
-		condition = condition.replace('+',' ');
+		// Decode url params
+		try {
+			condition = URLDecoder.decode(condition, StandardCharsets.UTF_8.toString());
+		}
+		catch (IllegalArgumentException e) {
+			throw new InvalidQueryException();
+		}
+		catch (UnsupportedEncodingException e) {
+			throw new InvalidQueryException();
+		}
 
 		AverageTimeForRequitment result = myMongoCollectionRepository.averageTimeForRequitmentInDays(condition);
 

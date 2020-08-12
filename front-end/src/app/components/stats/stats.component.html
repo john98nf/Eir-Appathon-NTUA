@@ -26,7 +26,8 @@
       </div>
   </span>
   <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="flex-start" class="cardList"
-    *ngIf="actual !== null && anticipated !== null && average_duration !== null">
+    *ngIf="(actual !== null && anticipated !== null && average_duration !== null)
+            && (actual !== 0 && anticipated !== 0 && average_duration !== 0)">
       <mat-card class="cardListItem" mat-elevation-z8>
           <mat-card-header>
               <div mat-card-avatar>
@@ -61,4 +62,14 @@
           </mat-card-content>
       </mat-card>
   </div>
+  <span *ngIf="(actual === 0 && anticipated === 0 && average_duration === 0)">
+      <div style="margin-top:100px">
+          <div class="wrapper">
+              <mat-icon class="my-icon-2">help_outline</mat-icon>
+          </div>
+            <div class="wrapper">
+              <h3 style="margin-top:10px; color: #B0BEC5;">No Clinical Studies were found relevant to this condition</h3>
+            </div>
+      </div>
+  </span>
 </div>

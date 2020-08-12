@@ -78,3 +78,9 @@
 .input-text {
     color:#ffffff;
 }
+
+.my-icon-2 {
+    color: #B0BEC5;
+    margin-bottom:20px;
+    transform: scale(4);
+}
