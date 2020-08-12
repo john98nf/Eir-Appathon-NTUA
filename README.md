@@ -8,8 +8,6 @@ By processing all the available data, offered by the website https://clinicaltri
 * The amount of patients that have been enrolled for clinical studies,relevant to a certain desease (i.e. Sjogren’s Syndrome), and participated in them (enrollment type: "Actual").
 * The amount of anticipated patients that have been enrolled for clinical studies, relevant to a certain desease (enrollment type: "Anticipated").
 * The average time duration (in days) that was required for the requitment of these volunteers, based upon the initial submition date and the date that each clinical study has been updated for the last time.
-(The functionality mentioned above originates from a subject initially proposed by the teachers of this course with the code-name CTGOV-01.)
-
 
 ## Directories' Structure
 
