@@ -88,7 +88,7 @@ public class EirRestController {
 		// Drop '+' character and replace it with actual spaces
 		ActualNumberOfVolunteers result = myMongoCollectionRepository.sumOfVolunteers(condition);
 
-		if (result == null) throw new ActualNoVNotFoundException();
+		if (result == null) result = new ActualNumberOfVolunteers(new Long(0));
 
 		return new EntityModel<>(result,ControllerLinkBuilder.linkTo(EirRestController.class)
 												.slash("actualNumberOfVolunteers")
@@ -104,7 +104,7 @@ public class EirRestController {
 
 		AnticipatedNumberOfVolunteers result = myMongoCollectionRepository.sumOfAnticipatedVolunteers(condition);
 
-		if (result == null) throw new AnticipatedNoVNotFoundException();
+		if (result == null) result = new AnticipatedNumberOfVolunteers(new Long(0));
 
 		return new EntityModel<>(result,ControllerLinkBuilder.linkTo(EirRestController.class)
 												.slash("anticipatedNumberOfVolunteers")
@@ -120,7 +120,7 @@ public class EirRestController {
 
 		AverageTimeForRequitment result = myMongoCollectionRepository.averageTimeForRequitmentInDays(condition);
 
-		if (result == null) throw new AnticipatedNoVNotFoundException();
+		if (result == null) result = new AverageTimeForRequitment(new Float(0));
 
 		return new EntityModel<>(result,ControllerLinkBuilder.linkTo(EirRestController.class)
 												.slash("averageTimeForRequitment")
