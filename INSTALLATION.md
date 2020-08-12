@@ -39,7 +39,7 @@ The reason behind this dummy trick, is the fact that unfortunately mongodb doesn
 
 ### Option B: Importing database from binary dumps
 
-In this case, you are advise to download binary dumps from this [link](https://drive.google.com/file/d/1G0_LVaFAy6LAcUCsTPAv5mtpAx4LBLDp/view?usp=sharing) and place it inside `Dumps` folder. In addition, you'll have to export the tarball and import generated files into eir db:
+In this case, you are advise to download binary dumps from this [link](https://drive.google.com/file/d/1s1fjV97XBSoQoqY9xK_CF25W4oz0kwbl/view?usp=sharing) and place it inside `Dumps` folder. In addition, you'll have to export the tarball and import generated files into eir db:
 
 ```
 cd /path/to/Eir-Appathon-NTUA/Dumps
