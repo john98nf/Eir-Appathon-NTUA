@@ -35,6 +35,12 @@
     flex: 1 1 420px;
     flex: 0 1 420px;
 }
+.cardListLargeItem {
+    margin:10px;
+    height: 150px;
+    flex: 1 1 420px;
+    flex: 0 1 860px;
+}
 
 .input-grid {
     display: flex;
@@ -83,4 +89,12 @@
     color: #B0BEC5;
     margin-bottom:20px;
     transform: scale(4);
+}
+
+.read-further-button {
+    background-color: #69F0AE;
+    color: #000000;
+    bottom: 10px;
+    margin-left:5px;
+    position: absolute;
 }

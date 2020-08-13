@@ -103,19 +103,23 @@ public class EirRestController {
 			result = myMongoCollectionRepository.randomClinicalStudyByCondition(condition);
 		}
 		catch (IllegalArgumentException e) {
-			System.out.println("Hello1");
 			throw new InvalidQueryException();
 		}
 		catch (UnsupportedEncodingException e) {
-			System.out.println("Hello2");
 			throw new InvalidQueryException();
 		}
 		catch (DataAccessException e) {
-			System.out.println("Hello3");
 			throw new InvalidQueryException();
 		}
 
 		if (result == null) throw new ClinicalStudyNotFoundException();
+		else {
+			// Format Text blocks
+			result.setClinicalStudyBriefSummary(result.getClinicalStudy()
+													.getBriefSummary()
+													.replace("\n      "," ")
+													.replace("\n    ",""));
+		}
 
 		return new EntityModel<>(result,ControllerLinkBuilder.linkTo(EirRestController.class)
 												.slash("randomClinicalStudyByCondition")

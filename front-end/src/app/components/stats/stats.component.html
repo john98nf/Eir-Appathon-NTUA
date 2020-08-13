@@ -15,7 +15,7 @@
           <button mat-raised-button color="accent" class="zoom" *ngIf="!(condition === null || condition ==='')" (click)="onSubmit()">Search</button>
       </div>
   </div>
-  <span *ngIf="(oneRequest === true) && (number_of_studies === null || actual === null || anticipated === null || average_duration === null)">
+  <span *ngIf="(oneRequest === true) && (number_of_studies === null || actual === null || anticipated === null || average_duration === null || clinical_study === null)">
       <div style="margin-top:100px">
           <div class="wrapper">
               <mat-spinner color="accent"></mat-spinner>
@@ -26,8 +26,8 @@
       </div>
   </span>
   <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="flex-start" class="cardList"
-    *ngIf="(number_of_studies !== null && actual !== null && anticipated !== null && average_duration !== null)
-            && (number_of_studies !== 0 && actual !== 0 && anticipated !== 0 && average_duration !== 0)">
+    *ngIf="(number_of_studies !== null && actual !== null && anticipated !== null && average_duration !== null && clinical_study !== null)
+            && (number_of_studies !== 0 && actual !== 0 && anticipated !== 0 && average_duration !== 0 && clinical_study !== {})">
       <mat-card class="cardListItem" mat-elevation-z8>
           <mat-card-header>
               <div mat-card-avatar>
@@ -71,6 +71,22 @@
           <mat-card-content class="card-content">
             {{average_duration}} Days
           </mat-card-content>
+      </mat-card>
+      <mat-card class="cardListLargeItem" mat-elevation-z8>
+          <mat-card-header>
+              <div mat-card-avatar>
+                  <mat-icon class="avatar">folder_special</mat-icon>
+              </div>
+              <mat-card-title>Random Clinical Study</mat-card-title>
+            <mat-card-subtitle style="font-size:16px;">
+                {{clinical_study.clinicalStudy.briefTitle}}
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-actions>
+                  <button mat-raised-button class="zoom" class="read-further-button">
+                      Read Further
+                  </button>
+          </mat-card-actions>
       </mat-card>
   </div>
   <span *ngIf="(number_of_studies === 0 && actual === 0 && anticipated === 0 && average_duration === 0)">

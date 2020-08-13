@@ -31,4 +31,8 @@ public class MyMongoCollection {
     public void setClinicalStudy(ClinicalStudy clinical_study) {
         this.clinical_study = clinical_study;
     }
+
+    public void setClinicalStudyBriefSummary(String briefSummary) {
+        this.clinical_study.setBriefSummary(briefSummary);
+    }
 }
