@@ -35,7 +35,16 @@ export PROJECT_FOLDER="/path/to/Eir-Appathon-NTUA"
 ```
 The first script uses [xmljson](https://pypi.org/project/xmljson/) python library for converting xml format to json format, following the [GData](http://wiki.open311.org/JSON_and_XML_Conversion/) convetion (as attributes are needed for this application).
 The second script imports json files, created above into eir db under the clinical_studies collection. Also, using sed command, the same script converts '$t' string in each file (before importing into db) with 'value'.
-The reason behind this dummy trick, is the fact that unfortunately mongodb doesn't support field names starting with '$' character yet.
+The reason behind this dummy trick, is the fact that unfortunately mongodb doesn't support field names starting with '$' character yet. In addition, it is recommended to create indexes on the fields of interest, in order to achieve better performance concering the rest service.
+
+```
+mongo
+use eir
+db.clinical_studies.createIndex({ "clinical_studies.condition.value" : 1})
+db.clinical_studies.createIndex("clinical_studies.enrollment.type" : 1 })
+exit
+```
+The above commands create two  ascending indexes. One on the field of condition and one on the field of enrollment.type, as all the queries that the rest service offers are based on them. Feel free to experiment with additional index types, like "hash", which can be found in the [documentation](https://docs.mongodb.com/manual/reference/method/db.collection.createIndex/).
 
 ### Option B: Importing database from binary dumps
 
