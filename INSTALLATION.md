@@ -78,4 +78,4 @@ cd /path/to/Eir-Appathon-NTUA/front-end
 npm install                               # Necessary only the first time you'll try to run it
 ng serve
 ```
-Now you can explore Eir Web App and its fuctionalities at http://localhost:4200/eir.
+Now you can explore Eir Web App and its fuctionalities at http://localhost:4200/.
