@@ -12,6 +12,7 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.ControllerLinkBuilder;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.MediaTypes;
+import org.springframework.dao.DataAccessException;
 import java.net.URLDecoder;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
@@ -37,22 +38,28 @@ public class EirRestController {
 	@RequestMapping(value = {"/",""},produces = MediaTypes.HAL_JSON_VALUE)
 	public EntityModel<String> index() {
 		return new EntityModel<>("Greetings from Eir Restfull Web Service!",
-								ControllerLinkBuilder.linkTo(EirRestController.class)
-								.withSelfRel());
+									ControllerLinkBuilder.linkTo(EirRestController.class)
+									.withSelfRel());
 	}
 
 	@GetMapping(value = "/clinicalStudies",produces = MediaTypes.HAL_JSON_VALUE)
 	public CollectionModel<EntityModel<MyMongoCollection>> getAllStudies() {
-		List<EntityModel<MyMongoCollection>> result = myMongoCollectionRepository.findAll().stream()
-													    .map(collection -> new EntityModel<>(collection,
-														ControllerLinkBuilder.linkTo(EirRestController.class)
-															.slash("clinicalStudies")
-															.slash(collection.getId())
-															.withSelfRel(),
-														ControllerLinkBuilder.linkTo(EirRestController.class)
-															.slash("clinicalStudies")
-															.withRel("allStudies")))
-													    .collect(Collectors.toList());
+		List<EntityModel<MyMongoCollection>> result;
+		try {
+			result = myMongoCollectionRepository.findAll().stream()
+											    .map(collection -> new EntityModel<>(collection,
+													ControllerLinkBuilder.linkTo(EirRestController.class)
+														.slash("clinicalStudies")
+														.slash(collection.getId())
+														.withSelfRel(),
+													ControllerLinkBuilder.linkTo(EirRestController.class)
+														.slash("clinicalStudies")
+														.withRel("allStudies")))
+											    .collect(Collectors.toList());
+		}
+		catch (DataAccessException e) {
+			throw new InvalidQueryException();
+		}
 
 		return new CollectionModel<>(result, ControllerLinkBuilder.linkTo(EirRestController.class)
 														.slash("clinicalStudies")
@@ -71,6 +78,9 @@ public class EirRestController {
 		catch (IllegalArgumentException e) {
 			throw new InvalidQueryException();
 		}
+		catch (DataAccessException e) {
+			throw new InvalidQueryException();
+		}
 
 		if (collection == null) throw new ClinicalStudyNotFoundException();
 
@@ -87,8 +97,10 @@ public class EirRestController {
 	public EntityModel<ActualNumberOfVolunteers> getActualNumberOfVolunteers(@PathVariable("condition") String condition) {
 
 		// Decode url params
+		ActualNumberOfVolunteers result;
 		try {
 			condition = URLDecoder.decode(condition, StandardCharsets.UTF_8.toString());
+			result = myMongoCollectionRepository.sumOfVolunteers(condition);
 		}
 		catch (IllegalArgumentException e) {
 			throw new InvalidQueryException();
@@ -96,7 +108,9 @@ public class EirRestController {
 		catch (UnsupportedEncodingException e) {
 			throw new InvalidQueryException();
 		}
-		ActualNumberOfVolunteers result = myMongoCollectionRepository.sumOfVolunteers(condition);
+		catch (DataAccessException e) {
+			throw new InvalidQueryException();
+		}
 
 		if (result == null) result = new ActualNumberOfVolunteers(new Long(0));
 
@@ -110,8 +124,10 @@ public class EirRestController {
 	public EntityModel<AnticipatedNumberOfVolunteers> getAnticipatedNumberOfVolunteers(@PathVariable("condition") String condition) {
 
 		// Decode url params
+		AnticipatedNumberOfVolunteers result;
 		try {
 			condition = URLDecoder.decode(condition, StandardCharsets.UTF_8.toString());
+			result = myMongoCollectionRepository.sumOfAnticipatedVolunteers(condition);
 		}
 		catch (IllegalArgumentException e) {
 			throw new InvalidQueryException();
@@ -119,8 +135,9 @@ public class EirRestController {
 		catch (UnsupportedEncodingException e) {
 			throw new InvalidQueryException();
 		}
-
-		AnticipatedNumberOfVolunteers result = myMongoCollectionRepository.sumOfAnticipatedVolunteers(condition);
+		catch (DataAccessException e) {
+			throw new InvalidQueryException();
+		}
 
 		if (result == null) result = new AnticipatedNumberOfVolunteers(new Long(0));
 
@@ -134,8 +151,10 @@ public class EirRestController {
 	public EntityModel<AverageTimeForRequitment> getAverageTimeForRequitment(@PathVariable("condition") String condition) {
 
 		// Decode url params
+		AverageTimeForRequitment result;
 		try {
 			condition = URLDecoder.decode(condition, StandardCharsets.UTF_8.toString());
+			result = myMongoCollectionRepository.averageTimeForRequitmentInDays(condition);
 		}
 		catch (IllegalArgumentException e) {
 			throw new InvalidQueryException();
@@ -143,8 +162,9 @@ public class EirRestController {
 		catch (UnsupportedEncodingException e) {
 			throw new InvalidQueryException();
 		}
-
-		AverageTimeForRequitment result = myMongoCollectionRepository.averageTimeForRequitmentInDays(condition);
+		catch (DataAccessException e) {
+			throw new InvalidQueryException();
+		}
 
 		if (result == null) result = new AverageTimeForRequitment(new Float(0));
 
@@ -158,8 +178,10 @@ public class EirRestController {
 	public EntityModel<NumberOfStudies> getNumberOfStudies(@PathVariable("condition") String condition) {
 
 		// Decode url params
+		NumberOfStudies result;
 		try {
 			condition = URLDecoder.decode(condition, StandardCharsets.UTF_8.toString());
+			result = myMongoCollectionRepository.numberOfStudies(condition);
 		}
 		catch (IllegalArgumentException e) {
 			throw new InvalidQueryException();
@@ -167,8 +189,9 @@ public class EirRestController {
 		catch (UnsupportedEncodingException e) {
 			throw new InvalidQueryException();
 		}
-
-		NumberOfStudies result = myMongoCollectionRepository.numberOfStudies(condition);
+		catch (DataAccessException e) {
+			throw new InvalidQueryException();
+		}
 
 		if (result == null) result = new NumberOfStudies(new Long(0));
 
