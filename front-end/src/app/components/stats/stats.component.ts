@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from './../../services/data.service';
 import { HttpUrlEncodingCodec } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+
+import { ClinicalStudyDialogComponent } from '../clinical-study-dialog/clinical-study-dialog.component';
+
 @Component({
   selector: 'app-stats',
   templateUrl: './stats.component.html',
@@ -16,10 +20,19 @@ export class StatsComponent implements OnInit {
     public condition: string = null;
     public oneRequest = false;
 
-    constructor(private dataService: DataService) { }
+    constructor(private dataService: DataService,public dialog: MatDialog) { }
 
     ngOnInit(): void {
     }
+
+    openDialog(): void {
+      const dialogRef = this.dialog.open(ClinicalStudyDialogComponent, {
+          width: '800px',
+          minWidth: '420px',
+          height : 'auto',
+          data: this.clinical_study
+      });
+  }
 
     onSubmit() {
         console.log('Send Request for desease named ' + this.condition);

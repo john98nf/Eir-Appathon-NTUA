@@ -1,1 +1,23 @@
-<p>clinical-study-dialog works!</p>
+<h2 mat-dialog-title>{{data.clinicalStudy.briefTitle}}</h2>
+<div mat-dialog-content>
+    <mat-chip-list #chipList>
+        <mat-chip>
+            <mat-icon>apartment</mat-icon>
+            <div style="margin-left:5px;">{{data.clinicalStudy.source}}</div>
+        </mat-chip>
+        <mat-chip>
+            <mat-icon>location_on</mat-icon>
+            <div style="margin-left:5px;">{{data.clinicalStudy.country}}</div>
+        </mat-chip>
+        <mat-chip>
+            <mat-icon>sick</mat-icon>
+            <div style="margin-left:5px;">{{data.clinicalStudy.condition}}</div>
+        </mat-chip>
+    </mat-chip-list>
+    <div style="margin-top:10px;text-align:justify;">
+        {{data.clinicalStudy.briefSummary}}
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="warn" class="zoom" (click)="onClose()">Close</button>
+</div>
