@@ -53,4 +53,10 @@ public interface MyMongoCollectionRepository extends MongoRepository<MyMongoColl
     })
     public AverageTimeForRequitment averageTimeForRequitmentInDays(String condition);
 
+    @Aggregation(pipeline = {
+        "{$match: {'clinical_study.condition.value': '?0'}}",
+        "{$group: {_id: null, count: {$sum: 1}}}"
+    })
+    public NumberOfStudies numberOfStudies(String condition);
+
 }

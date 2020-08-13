@@ -154,4 +154,28 @@ public class EirRestController {
 												.withSelfRel());
 	}
 
+	@GetMapping(value = "/numberOfStudies/{condition}",produces = MediaTypes.HAL_JSON_VALUE)
+	public EntityModel<NumberOfStudies> getNumberOfStudies(@PathVariable("condition") String condition) {
+
+		// Decode url params
+		try {
+			condition = URLDecoder.decode(condition, StandardCharsets.UTF_8.toString());
+		}
+		catch (IllegalArgumentException e) {
+			throw new InvalidQueryException();
+		}
+		catch (UnsupportedEncodingException e) {
+			throw new InvalidQueryException();
+		}
+
+		NumberOfStudies result = myMongoCollectionRepository.numberOfStudies(condition);
+
+		if (result == null) result = new NumberOfStudies(new Long(0));
+
+		return new EntityModel<>(result,ControllerLinkBuilder.linkTo(EirRestController.class)
+												.slash("numberOfStudies")
+												.slash(condition)
+												.withSelfRel());
+	}
+
 }
