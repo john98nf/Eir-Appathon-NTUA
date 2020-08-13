@@ -11,6 +11,7 @@ export class DataService {
     private REST_API_ACTUAL_NOV = "http://localhost:8080/rest/actualNumberOfVolunteers";
     private REST_API_ANTICIPATED_NOV = "http://localhost:8080/rest/anticipatedNumberOfVolunteers";
     private REST_API_AVERAGE_TIME = "http://localhost:8080/rest/averageTimeForRequitment";
+    private REST_API_NUMBER_OF_STUDIES = "http://localhost:8080/rest/numberOfStudies";
 
     constructor(private httpClient: HttpClient) { }
 
@@ -36,6 +37,10 @@ export class DataService {
 
     public sendRequestForAverageTimeForRequitment(searchTerm: string){
         return this.httpClient.get(this.REST_API_AVERAGE_TIME + "/" + searchTerm);
+    }
+
+    public sendRequestForNumberOfStudies(searchTerm: string){
+        return this.httpClient.get(this.REST_API_NUMBER_OF_STUDIES + "/" + searchTerm);
     }
 
 }

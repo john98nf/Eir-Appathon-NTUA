@@ -11,6 +11,7 @@ export class StatsComponent implements OnInit {
     public actual: Number = null;
     public anticipated: Number = null;
     public average_duration: Number = null;
+    public number_of_studies: Number = null;
     public condition: string = null;
     public searchTerm: string = null;
     public oneRequest = false;
@@ -27,9 +28,11 @@ export class StatsComponent implements OnInit {
         this.actual = null;
         this.anticipated = null;
         this.average_duration = null;
+        this.number_of_studies = null;
         this.sendRequestForActualNoV();
         this.sendRequestForAnticipatedNoV();
         this.sendRequestForAverageTimeFoR();
+        this.sendRequestForNumberOfStudies();
     }
 
     sendRequestForActualNoV() {
@@ -67,6 +70,19 @@ export class StatsComponent implements OnInit {
                                     error => {
                                         console.log("Null response for average time duration");
                                         this.average_duration = 0;
+                                    }
+        );
+    }
+
+    sendRequestForNumberOfStudies() {
+        this.dataService.sendRequestForNumberOfStudies(encodeURIComponent(this.condition))
+                        .subscribe((data: any) => {
+                                        console.log(data);
+                                        this.number_of_studies = data.count;
+                                    },
+                                    error => {
+                                        console.log("Null response for number of studies");
+                                        this.number_of_studies = 0;
                                     }
         );
     }
