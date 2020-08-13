@@ -5,6 +5,9 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class ClinicalStudy {
     @Field("brief_title")
     private String briefTitle;
+    private String source;
+    @Field("brief_summary")
+    private String briefSummary;
     private String condition;
     private Enrollment enrollment;
 
@@ -38,5 +41,21 @@ public class ClinicalStudy {
 
     public void setBriefTitle(String briefTitle) {
         this.briefTitle = briefTitle;
+    }
+
+    public String getBriefSummary() {
+        return briefSummary;
+    }
+
+    public void setBriefSummary(String briefSummary) {
+        this.briefSummary = briefSummary;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 }

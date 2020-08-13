@@ -93,6 +93,39 @@ public class EirRestController {
 													.withRel("allStudies"));
 	}
 
+	@GetMapping(value = "/randomClinicalStudyByCondition/{condition}",produces = MediaTypes.HAL_JSON_VALUE)
+	public EntityModel<MyMongoCollection> findOneClinicalStudy(@PathVariable("condition") String condition) {
+
+		// Decode url params
+		MyMongoCollection result;
+		try {
+			condition = URLDecoder.decode(condition, StandardCharsets.UTF_8.toString());
+			result = myMongoCollectionRepository.randomClinicalStudyByCondition(condition);
+		}
+		catch (IllegalArgumentException e) {
+			System.out.println("Hello1");
+			throw new InvalidQueryException();
+		}
+		catch (UnsupportedEncodingException e) {
+			System.out.println("Hello2");
+			throw new InvalidQueryException();
+		}
+		catch (DataAccessException e) {
+			System.out.println("Hello3");
+			throw new InvalidQueryException();
+		}
+
+		if (result == null) throw new ClinicalStudyNotFoundException();
+
+		return new EntityModel<>(result,ControllerLinkBuilder.linkTo(EirRestController.class)
+												.slash("randomClinicalStudyByCondition")
+												.slash(result.getClinicalStudy().getCondition())
+												.withSelfRel(),
+											ControllerLinkBuilder.linkTo(EirRestController.class)
+													.slash("clinicalStudies")
+													.withRel("allStudies"));
+	}
+
 	@GetMapping(value = "/actualNumberOfVolunteers/{condition}",produces = MediaTypes.HAL_JSON_VALUE)
 	public EntityModel<ActualNumberOfVolunteers> getActualNumberOfVolunteers(@PathVariable("condition") String condition) {
 
