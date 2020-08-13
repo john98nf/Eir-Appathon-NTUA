@@ -8,7 +8,6 @@ public class ClinicalStudy {
     private String source;
     @Field("brief_summary")
     private String briefSummary;
-    private String country;
     private String condition;
     private Enrollment enrollment;
 
@@ -60,11 +59,4 @@ public class ClinicalStudy {
         this.source = source;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getCountry() {
-        return country;
-    }
 }

@@ -14,14 +14,14 @@ public interface MyMongoCollectionRepository extends MongoRepository<MyMongoColl
 
     @Aggregation(pipeline = {
         "{$match: {_id:ObjectId('?0')}}",
-        "{$project: {clinical_study: {brief_title: '$clinical_study.brief_title.value',source: '$clinical_study.source.value', brief_summary: '$clinical_study.brief_summary.textblock.value',country: '$location_countries.country.value',condition: {$cond: [{$isArray: '$clinical_study.condition'}, {'$reduce': {'input': '$clinical_study.condition.value','initialValue': '','in': {'$concat': ['$$value',{'$cond': [{'$eq': ['$$value', '']}, '', ', ']},'$$this']}}},'$clinical_study.condition.value']},enrollment: '$clinical_study.enrollment'}}}"
+        "{$project: {clinical_study: {brief_title: '$clinical_study.brief_title.value',source: '$clinical_study.source.value', brief_summary: '$clinical_study.brief_summary.textblock.value',condition: {$cond: [{$isArray: '$clinical_study.condition'}, {'$reduce': {'input': '$clinical_study.condition.value','initialValue': '','in': {'$concat': ['$$value',{'$cond': [{'$eq': ['$$value', '']}, '', ', ']},'$$this']}}},'$clinical_study.condition.value']},enrollment: '$clinical_study.enrollment'}}}"
     })
     public MyMongoCollection findClinicalStudyById(String id);
 
     @Aggregation(pipeline = {
         "{$match: {'clinical_study.condition.value':'?0'}}",
         "{$sample: {size: 1}}",
-        "{$project: {clinical_study: {brief_title: '$clinical_study.brief_title.value',source: '$clinical_study.source.value', brief_summary: '$clinical_study.brief_summary.textblock.value',country: '$location_countries.country.value',condition: {$cond: [{$isArray: '$clinical_study.condition'}, {'$reduce': {'input': '$clinical_study.condition.value','initialValue': '','in': {'$concat': ['$$value',{'$cond': [{'$eq': ['$$value', '']}, '', ', ']},'$$this']}}},'$clinical_study.condition.value']},enrollment: '$clinical_study.enrollment'}}}"
+        "{$project: {clinical_study: {brief_title: '$clinical_study.brief_title.value',source: '$clinical_study.source.value', brief_summary: '$clinical_study.brief_summary.textblock.value',condition: {$cond: [{$isArray: '$clinical_study.condition'}, {'$reduce': {'input': '$clinical_study.condition.value','initialValue': '','in': {'$concat': ['$$value',{'$cond': [{'$eq': ['$$value', '']}, '', ', ']},'$$this']}}},'$clinical_study.condition.value']},enrollment: '$clinical_study.enrollment'}}}"
     })
     public MyMongoCollection randomClinicalStudyByCondition(String condition);
 

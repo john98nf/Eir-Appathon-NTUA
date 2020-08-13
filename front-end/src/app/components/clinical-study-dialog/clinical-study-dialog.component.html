@@ -5,13 +5,9 @@
             <mat-icon>apartment</mat-icon>
             <div style="margin-left:5px;">{{data.clinicalStudy.source}}</div>
         </mat-chip>
-        <mat-chip>
-            <mat-icon>location_on</mat-icon>
-            <div style="margin-left:5px;">{{data.clinicalStudy.country}}</div>
-        </mat-chip>
-        <mat-chip>
+        <mat-chip *ngFor="let cond of data.clinicalStudy.condition.split(', ')">
             <mat-icon>sick</mat-icon>
-            <div style="margin-left:5px;">{{data.clinicalStudy.condition}}</div>
+            <div style="margin-left:5px;">{{cond}}</div>
         </mat-chip>
     </mat-chip-list>
     <div style="margin-top:10px;text-align:justify;">
