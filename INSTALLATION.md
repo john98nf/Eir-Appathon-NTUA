@@ -4,12 +4,7 @@ Following the steps mentioned below, anyone would be able to try and test the we
 
 ## Prerequisites
 
-* [MongoDB](https://docs.mongodb.com/manual/installation/). After running mongo server, with the following commands it is possible to connect to it and create a database named eir.
-```
-mongo
-use eir # any other name is possible, but a change inside application.properties is required
-exit
-```
+* [MongoDB](https://docs.mongodb.com/manual/installation/)
 * [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
 * [Maven](https://maven.apache.org/install.html).
 * [npm](https://www.npmjs.com/get-npm)
@@ -20,7 +15,13 @@ exit
 
 ## Database Creation
 
-Everyone interested in creating this database has two proper ways of doing so.
+Everyone interested in creating this database has two proper ways of doing so. First things first, with the following commands it is possible to connect to the server and create a database named eir.
+
+```
+mongo
+use eir # any other name is possible, but a change inside application.properties is required
+exit
+```
 
 ### Option A: Download raw dataset and import it from scratch
 Clone or download this project and navigate to its home folder. Keep in mind that the above process is extremely time consuming and if you're looking a more straight forward solution, you are advised to implement Option B.
