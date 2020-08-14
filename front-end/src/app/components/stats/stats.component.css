@@ -67,12 +67,6 @@
 .zoom:hover {
     transform: scale(1.05);
 }
-.zoom-fab {
-    transition: transform .2s;
-}
-.zoom-fab:hover {
-    transform: scale(1.2);
-}
 
 .card-content {
     text-align: center;
@@ -93,8 +87,13 @@
 
 .read-further-button {
     background-color: #69F0AE;
-    color: #000000;
+    color: #333333;
     bottom: 10px;
     left:15px;
     position: absolute;
+}
+
+.search-button {
+    color:#333333;
+    background-color: #B0BEC5;
 }

@@ -12,7 +12,7 @@
       </div>
       <div class="input-grid-item" style="margin-top: 10px;">
           <button mat-raised-button [disabled]="true" *ngIf="condition === null || condition ===''">Search</button>
-          <button mat-raised-button color="accent" class="zoom" *ngIf="!(condition === null || condition ==='')" (click)="onSubmit()">Search</button>
+          <button mat-raised-button class="zoom search-button" *ngIf="!(condition === null || condition ==='')" (click)="onSubmit()">Search</button>
       </div>
   </div>
   <span *ngIf="(oneRequest === true) && (number_of_studies === null || actual === null || anticipated === null || average_duration === null || clinical_study === null)">
@@ -83,7 +83,7 @@
             </mat-card-subtitle>
           </mat-card-header>
           <mat-card-actions>
-                  <button mat-raised-button class="zoom" class="read-further-button" (click)="openDialog()">
+                  <button mat-raised-button class="zoom read-further-button" (click)="openDialog()">
                       Read Further
                   </button>
           </mat-card-actions>
