@@ -5,7 +5,7 @@ Eir is a simple Web Application, designed and implemented for the contest of [Ap
 
 ## Utilities
 By processing all the available data, offered by the website https://clinicaltrials.gov/, web application Eir is able to present:
-* The amount of patients that have been enrolled for clinical studies,relevant to a certain desease (i.e. Sjogren’s Syndrome), and participated in them (enrollment type: "Actual").
+* The amount of patients that have been enrolled for clinical studies,relevant to a certain desease (i.e. Sjogren's Syndrome), and participated in them (enrollment type: "Actual").
 * The amount of anticipated patients that have been enrolled for clinical studies, relevant to a certain desease (enrollment type: "Anticipated").
 * The average time duration (in days) that was required for the requitment of these volunteers, based upon the initial submition date and the date that each clinical study has been updated for the last time.
 
