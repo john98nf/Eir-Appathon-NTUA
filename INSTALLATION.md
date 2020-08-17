@@ -55,7 +55,7 @@ In this case, you are advise to download binary dumps from this [link](https://d
 cd /path/to/Eir-Appathon-NTUA/Dumps
 mkdir back-up
 tar -xvzf back-up.tar.gz -C Dumps/back-up
-mongorestore -h localhost:27017 -d eir Dumps/back-up/
+mongorestore -h localhost:27017 -d eir Dumps/back-up/eir
 ```
 
 ## Testing Application
