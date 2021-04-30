@@ -1,5 +1,11 @@
 # Eir-Appathon-NTUA
-
+[![MongoDB](https://img.shields.io/badge/MongoDB-v4-green.svg)](https://www.mongodb.com/2)
+[![Java](https://img.shields.io/badge/Java-11-yellow.svg)](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
+[![SpringBoot](https://img.shields.io/badge/SpringBoot-2.3.2-green.svg)](https://spring.io/projects/spring-boot)
+[![Angular](https://img.shields.io/badge/AngularCLI-9.1.15-red.svg)](https://angular.io/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3.8.3-blue.svg)](https://www.typescriptlang.org/) <br/>
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/john98nf/Eir-Appathon-NTUA/blob/master/LICENSE)
+[![Open Source Love svg2](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 ## General
 Eir is a simple Web Application, designed and implemented for the contest of [Appathon@NTUA](http://147.102.19.19/wordpress). This competition was organised by the teacher and PhD students of the ["Internet Applications"](http://ecourses.dbnet.ntua.gr/15372.html) course in the [School of Electrical & Computer Engineering of the National Technical University of Athens](https://www.ece.ntua.gr/gr). As far as its name is concerned, it has been inspired by Norse mythology and in more depth by the aforamentioned goddess or else valkyrie, associated with medical skill. Further knowledge for this subject can be obtained [here](https://en.wikipedia.org/wiki/Eir).
 
