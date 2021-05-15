@@ -9,6 +9,14 @@
 ## General
 Eir is a simple Web Application, designed and implemented for the contest of [Appathon@NTUA](http://147.102.19.19/wordpress). This competition was organised by the teacher and PhD students of the ["Internet Applications"](http://ecourses.dbnet.ntua.gr/15372.html) course in the [School of Electrical & Computer Engineering of the National Technical University of Athens](https://www.ece.ntua.gr/gr). As far as its name is concerned, it has been inspired by Norse mythology and in more depth by the aforamentioned goddess or else valkyrie, associated with medical skill. Further knowledge for this subject can be obtained [here](https://en.wikipedia.org/wiki/Eir).
 
+## Table of Contents
+- [Utilities](#utilities)
+- [Directories' Structure](#directories)
+- [Technologies & Datasets](#technologies)
+- [Installation Process](#installation)
+
+<a name="utilities"/>
+
 ## Utilities
 By processing all the available data, offered by the website https://clinicaltrials.gov/, web application Eir is able to present:
 * The number of studies found for each condition.
@@ -17,14 +25,18 @@ By processing all the available data, offered by the website https://clinicaltri
 * The average time duration (in days) that was required for the requitment of these volunteers, based upon the initial submition date and the date that each clinical study has been updated for the last time.
 * A random clinical study relevant to the selected condition, a brief summary for it and the research center responsible.
 
+<a name="directories"/>
+
 ## Directories' Structure
 
 For the dictory management, it was decided to follow the structure mentioned below:
 
-* The entiry front-end server-project, with its components, is located inside the ```front-end``` folder.
-* The back-end service with the rest, entities and repository components can be found inside the ```back-end``` folder.
-* The folder ```Dumps``` has been created for storing datasets mentioned above (not uploaded in this repo), database dump-binary files (not upload in this repo) and all the appropriate scripts used in the process of database constraction.
-* Inside the folder named ```presentation```, presentation slides and link to the relevant video were placed as requested by the supervisors.
+* The entiry front-end server-project, with its components, is located inside the [front-end](https://github.com/john98nf/Eir-Appathon-NTUA/tree/master/front-end) folder.
+* The back-end service with the rest, entities and repository components can be found inside the [back-end](https://github.com/john98nf/Eir-Appathon-NTUA/tree/master/back-end) folder.
+* The folder [Dumps](https://github.com/john98nf/Eir-Appathon-NTUA/tree/master/Dumps) has been created for storing datasets mentioned above (not uploaded in this repo), database dump-binary files (not upload in this repo) and all the appropriate scripts used in the process of database constraction.
+* Inside the folder named [presentation](https://github.com/john98nf/Eir-Appathon-NTUA/tree/master/presentation), presentation slides and link to the relevant video were placed as requested by the supervisors.
+
+<a name="technologies"/>
 
 ## Technologies & Datasets
 
@@ -35,6 +47,8 @@ For the dictory management, it was decided to follow the structure mentioned bel
 * Front-end server was designed using HTML 5/CSS 3 with [Angular Framework](https://angular.io/) & [Typescript](https://www.typescriptlang.org/).
 * [Maven Build Tool](https://maven.apache.org/).
 
+<a name="installation"/>
+
 ## Installation
 
-Developers interested in trying running this application on their personal machines are more than welcome to read ```INSTALLATION.md``` file for further information.
+Developers interested in trying running this application on their personal machines are more than welcome to read [INSTALLATION.md](https://github.com/john98nf/Eir-Appathon-NTUA/tree/master/INSTALLATION.md) file for further information.
